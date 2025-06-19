@@ -10,12 +10,14 @@
         gap: 32px;
         align-items: flex-start;
         margin-top: 24px;
+        flex-wrap: wrap;
       }
-      .video-box {
-        flex: 1;
+      .video-box,
+      .form-box {
+        flex: 1 1 350px;
+        min-width: 280px;
       }
       .form-box {
-        flex: 1;
         max-width: 400px;
         background: #f5f5f5;
         padding: 24px;
@@ -24,6 +26,7 @@
         height: 450px;
         display: flex;
         align-items: stretch;
+        margin-top: 24px;
       }
       .form-box textarea {
         width: 100%;
@@ -36,16 +39,36 @@
         resize: vertical;
         box-sizing: border-box;
       }
+      @media (max-width: 900px) {
+        .container {
+          flex-direction: column;
+          gap: 16px;
+        }
+        .form-box,
+        .video-box {
+          max-width: 100%;
+          height: auto;
+        }
+        .form-box {
+          height: 200px;
+        }
+        .form-box textarea {
+          height: 100px;
+        }
+        .video-box iframe {
+          height: 200px;
+        }
+      }
     </style>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const textarea = document.querySelector('.form-box textarea');
+      document.addEventListener("DOMContentLoaded", function () {
+        const textarea = document.querySelector(".form-box textarea");
         // Lấy nội dung đã lưu (nếu có)
-        const saved = localStorage.getItem('savedText');
+        const saved = localStorage.getItem("savedText");
         if (saved) textarea.value = saved;
         // Lưu nội dung mỗi khi thay đổi
-        textarea.addEventListener('input', function() {
-          localStorage.setItem('savedText', textarea.value);
+        textarea.addEventListener("input", function () {
+          localStorage.setItem("savedText", textarea.value);
         });
       });
     </script>
